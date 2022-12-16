@@ -1,6 +1,5 @@
 package org.example;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.regex.Matcher;
@@ -17,17 +16,17 @@ public class Main {
     public Main() {
     }
 
-    private static Document getPage() throws IOException {
+    private static Document getPage() throws Exception {
         String url = "https://www.pogoda.spb.ru";
         return Jsoup.parse(new URL(url), 3000);
     }
 
-    private static String getDateFromString(String stringDate) throws IOException {
+    private static String getDateFromString(String stringDate) throws Exception {
         Matcher matcher = pattern.matcher(stringDate);
         if (matcher.find()) {
             return matcher.group();
         } else {
-            throw new IOException("Can't extract date from string");
+            throw new Exception("Can't extract date from string");
         }
     }
 
